@@ -1,0 +1,53 @@
+object Form2: TForm2
+  Left = 694
+  Top = 107
+  Width = 351
+  Height = 470
+  Caption = 'Form2'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 24
+    Top = 24
+    Width = 98
+    Height = 13
+    Caption = #1050#1086#1083#1083#1080#1095#1077#1089#1090#1074#1086' '#1089#1083#1086#1105#1074
+  end
+  object SpinEdit1: TSpinEdit
+    Left = 168
+    Top = 24
+    Width = 121
+    Height = 22
+    EditorEnabled = False
+    MaxValue = 5
+    MinValue = 2
+    TabOrder = 0
+    Value = 2
+    OnChange = SpinEdit1Change
+  end
+  object PageControl1: TPageControl
+    Left = 8
+    Top = 160
+    Width = 329
+    Height = 273
+    ActivePage = TabSheet1
+    MultiLine = True
+    TabOrder = 1
+    object TabSheet1: TTabSheet
+      Caption = #1042#1093#1086#1076#1085#1086#1081' '#1089#1083#1086#1081
+    end
+    object TabSheet2: TTabSheet
+      Caption = #1042#1099#1093#1086#1076#1085#1086#1081' '#1089#1083#1086#1081
+      ImageIndex = 1
+    end
+  end
+end

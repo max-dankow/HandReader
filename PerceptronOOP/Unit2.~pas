@@ -1,0 +1,123 @@
+unit Unit2;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ComCtrls, StdCtrls, Spin;
+
+type
+  TForm2 = class(TForm)
+    SpinEdit1: TSpinEdit;
+    Label1: TLabel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure SpinEdit1Change(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+uses Unit1;
+
+{$R *.dfm}
+
+procedure TForm2.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Form1.enabled:=true;
+end;
+
+procedure TForm2.SpinEdit1Change(Sender: TObject);
+var T: TTabSheet;
+    P: TPageControl;
+begin
+  {temp:=TabControl1.Tabs.Count;
+  if SpinEdit1.Value>temp
+  then TabControl1.Tabs.Add(inttostr(spinedit1.Value)+' слой')
+  else TabControl1.Tabs.Delete(temp-1);}
+  //temp:=TabControl1.Tabs.Count;
+  //if SpinEdit1.Value>temp
+  //then TabControl1.Tabs.Add(inttostr(spinedit1.Value)+' слой')
+  //else TabControl1.Tabs.Delete(temp-1);
+
+  p:=PageControl1;
+  T := TTabSheet.Create(P);
+  if SpinEdit1.Value>p.PageCount
+  then begin
+  with T do
+  begin
+    Caption := 'Выходной слой';
+    PageControl := P;
+  end;
+
+  p.Pages[p.PageCount-2].Caption:=inttostr(p.PageCount-2)+' слой';
+
+  with tSpinEdit.create(application) do
+  begin
+    Parent := P.Pages[p.PageCount-1];
+    Left := 150;
+    Top := 40;
+  end;
+  with tLabel.create(application) do
+  begin
+    Parent := P.Pages[p.PageCount-1];
+    caption:='Количество нейронов';
+    Left := 10;
+    Top := 40;
+  end;
+  end
+  else begin
+         p.pages[p.PageCount-1].Hide;
+         p.pages[p.PageCount-1].Destroy;
+         p.Pages[p.PageCount-1].Caption:= 'Выходной слой';
+       end;
+end;
+
+
+
+procedure TForm2.FormCreate(Sender: TObject);
+var T: TTabSheet;
+    P: TPageControl;
+begin
+  p:=PageControl1;
+  T := TTabSheet.Create(P);
+  with tSpinEdit.create(application) do
+  begin
+    Parent := P.Pages[0];
+    Left := 150;
+    Top := 40;
+  end;
+  with tLabel.create(application) do
+  begin
+    Parent := P.Pages[0];
+    caption:='Количество нейронов';
+    Left := 10;
+    Top := 40;
+  end;
+
+  with tSpinEdit.create(application) do
+  begin
+    Parent := P.Pages[1];
+    Left := 150;
+    Top := 40;
+  end;
+
+  with tLabel.create(application) do
+  begin
+    Parent := P.Pages[1];
+    caption:='Количество нейронов';
+    Left := 10;
+    Top := 40;
+  end;
+end;
+
+end.
